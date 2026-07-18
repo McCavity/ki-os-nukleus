@@ -1,0 +1,11 @@
+{
+  "vaults": {
+    "privat": {
+      "name": "Mein Vault",
+      "path": "${VAULT_PRIVAT}",
+      "default": true,
+      "purpose": "Persönliches KI-OS"
+    }
+  },
+  "routing": { "start": "privat" }
+}
