@@ -38,7 +38,7 @@ Kontext-Dateien und deine persönliche `CLAUDE.md` an.
 > ist genau das Verzeichnis, das du geklont hast — eine getrackte, personalisierte
 > `CLAUDE.md` würde bei einem eigenen `git add -A` deine Daten in dein Repo committen.
 
-## Die fünf Befehle
+## Die sechs Befehle
 
 | Command | Wann nutzen |
 |---|---|
