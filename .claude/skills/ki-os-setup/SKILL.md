@@ -9,10 +9,10 @@ description: KI OS Setup — Erstellt die Vault-Struktur, führt ein 4-Fragen-On
 
 1. Prüfe, ob `vaults.json` und `.claude/skills/ki-os/SKILL.md` im aktuellen Verzeichnis
    existieren. Fehlt eines: "Dieses Verzeichnis ist kein KI-OS-Workspace. Wechsle in den
-   entpackten Nukleus-Ordner und rufe `/setup` dort erneut auf." — dann STOP.
+   geklonten Nukleus-Ordner und rufe `/setup` dort erneut auf." — dann STOP.
 2. Prüfe, ob eine `.env` mit gesetztem `VAULT_PRIVAT` existiert und der Pfad ein Verzeichnis ist.
    Falls ja: "Es ist bereits ein Vault registriert (`<pfad>`). Onboarding erneut durchlaufen
-   (bestehende Dateien bleiben) oder abbrechen?"
+   (Phase B überschreibt keine vorhandene Datei — nur fehlende werden ergänzt) oder abbrechen?"
 3. Sonst: weiter mit Phase A.
 
 ---
@@ -47,16 +47,34 @@ Speichere die Antworten intern als:
 Lies `references/vault-structure.md` für die vollständige Ordner- und Dateistruktur. Alle dort
 genannten Pfade sind relativ zu `{{VAULT_PFAD}}/`.
 
+> **Grundregel für ganz Phase B — gilt für jeden Schritt, der eine Datei schreibt (0, 2, 3, 4,
+> 5, 6): keine vorhandene Datei wird überschrieben.** Vor jedem Schreiben prüfen, ob die
+> Zieldatei bereits existiert. Existiert sie: **überspringen**, nichts schreiben, den
+> Vault-relativen Pfad zu einer Liste „übersprungen" hinzufügen (für Phase C). Existiert sie
+> nicht: schreiben wie beschrieben. Das gilt unverändert bei einem wiederholten `/setup`-Lauf
+> nach einem Abbruch oder bewußten erneuten Onboarding — nur fehlende Dateien werden ergänzt,
+> nichts Bestehendes geht verloren.
+
 ### Schritt 0: Vault registrieren
 
-1. Verzeichnis `{{VAULT_PFAD}}` anlegen.
-2. `.env` im Workspace-Root schreiben (überschreibt eine vorhandene Zeile, legt sie sonst an):
+1. **Sicherheitsprüfung wiederholen:** Löse `{{VAULT_PFAD}}` erneut zu einem absoluten,
+   aufgelösten Pfad auf (Tilde, relative Angaben, Symlinks). Liegt er innerhalb des
+   Workspace-Root oder ist mit ihm identisch: **hier stoppen**, nichts anlegen — dieselbe
+   Begründung wie bei Frage 0 zeigen und zurück zu Frage 0 springen. (Zweite Prüfung als
+   Sicherheitsnetz, falls Frage 0 übersprungen wurde oder sich der Pfad danach änderte.)
+2. Verzeichnis `{{VAULT_PFAD}}` anlegen — existiert es bereits (siehe Frage 0), unverändert
+   lassen, nur fehlende Unterordner werden in Schritt 1 ergänzt.
+3. `.env` im Workspace-Root schreiben (überschreibt eine vorhandene Zeile, legt sie sonst an):
 
    ```
    VAULT_PRIVAT={{VAULT_PFAD}}
    ```
 
-3. Auflösung sofort verifizieren:
+   (Die `.env`-Zeile selbst fällt nicht unter die Grundregel oben — sie ist Registry-Zustand
+   des Workspace, keine Vault-Wissensdatei, und muß bei jedem Lauf auf den aktuellen Pfad
+   zeigen.)
+
+4. Auflösung sofort verifizieren:
 
    ```bash
    python3 scripts/resolve_vault.py start
@@ -68,11 +86,14 @@ genannten Pfade sind relativ zu `{{VAULT_PFAD}}/`.
 ### Schritt 1: Ordner erstellen
 
 Erstelle alle 10 nummerierten Ordner und Unterordner unter `{{VAULT_PFAD}}/` wie in
-`vault-structure.md` definiert.
+`vault-structure.md` definiert (`mkdir -p` — legt nur fehlende Ordner an, rührt bestehende
+Inhalte nicht an).
 
 ### Schritt 2: Folder-Guides schreiben
 
-Lies jeden Guide aus `references/folder-guides/` und schreibe ihn als `_guide.md` in den entsprechenden Ordner:
+Lies jeden Guide aus `references/folder-guides/` und schreibe ihn als `_guide.md` in den
+entsprechenden Ordner — **pro Datei einzeln die Grundregel anwenden:** existiert die
+`_guide.md` schon, überspringen und zur Liste „übersprungen" hinzufügen; sonst schreiben.
 - `references/folder-guides/00-inbox.md` → `{{VAULT_PFAD}}/00-inbox/_guide.md`
 - `references/folder-guides/01-context.md` → `{{VAULT_PFAD}}/01-context/_guide.md`
 - `references/folder-guides/02-brand.md` → `{{VAULT_PFAD}}/02-brand/_guide.md`
@@ -86,7 +107,10 @@ Lies jeden Guide aus `references/folder-guides/` und schreibe ihn als `_guide.md
 
 ### Schritt 3: Context-Dateien erstellen
 
-Lies die Templates aus `references/context-templates/` und ersetze die Platzhalter mit den Onboarding-Antworten:
+Lies die Templates aus `references/context-templates/` und ersetze die Platzhalter mit den
+Onboarding-Antworten. **Für jede der folgenden Zieldateien einzeln die Grundregel anwenden:**
+existiert sie bereits, überspringen und zur Liste „übersprungen" hinzufügen; sonst schreiben.
+Eine bereits vorhandene Datei blockiert die anderen nicht — jede wird für sich geprüft.
 
 - `references/context-templates/ich.md` → `{{VAULT_PFAD}}/01-context/ich.md` (mit {{NAME}}, {{KURZBESCHREIBUNG}})
 - `references/context-templates/business.md` → `{{VAULT_PFAD}}/01-context/business.md` (mit {{ANGEBOT}}, {{ZIELGRUPPE}}, {{HERAUSFORDERUNG}})
@@ -94,7 +118,9 @@ Lies die Templates aus `references/context-templates/` und ersetze die Platzhalt
 - `references/context-templates/open-loops.md` → `{{VAULT_PFAD}}/03-strategy/open-loops.md` (mit {{DATUM}})
 - `references/context-templates/projekte.md` → `{{VAULT_PFAD}}/04-projects/README.md` (mit {{PROJEKTE}}; Spalte „Nächster Schritt" siehe „Erste Prioritäten ableiten" unten)
 
-**Erste Prioritäten ableiten (statt Platzhalter stehenlassen):**
+**Erste Prioritäten ableiten (statt Platzhalter stehenlassen) — nur relevant, wenn
+`current-priorities.md` bzw. `04-projects/README.md` laut Grundregel tatsächlich geschrieben
+werden (nicht übersprungen):**
 - Für jedes in Frage 3 genannte Projekt einen konkreten ersten Schritt als Priorität
   eintragen, abgeleitet aus dem genannten Ziel — keine Platzhalter (`[Priorität N]`)
   stehenlassen.
@@ -106,13 +132,17 @@ Lies die Templates aus `references/context-templates/` und ersetze die Platzhalt
 Derselbe abgeleitete erste Schritt füllt auch die Spalte „Nächster Schritt" des jeweiligen
 Projekts in `04-projects/README.md` — eine Ableitung, zwei Stellen.
 
-Erstelle zusätzlich für jedes genannte Projekt einen Unterordner mit `README.md`:
-- `{{VAULT_PFAD}}/04-projects/{projektname-kebab}/README.md` mit Ziel und Status "Aktiv"
-- Verlinke das Projekt mit `[[ich]]` und ggf. `[[business]]`
+Erstelle zusätzlich für jedes genannte Projekt einen Unterordner mit `README.md`
+(`{{VAULT_PFAD}}/04-projects/{projektname-kebab}/README.md`, mit Ziel und Status "Aktiv",
+verlinkt mit `[[ich]]` und ggf. `[[business]]`) — **auch hier pro Projekt einzeln die
+Grundregel anwenden:** existiert die `README.md` des Projekts schon, überspringen; sonst
+schreiben.
 
 ### Schritt 4: Weitere Seed-Dateien
 
-Schreibe exakt die folgenden vier Dateien (Platzhalter ersetzen, sonst wortgleich):
+Schreibe die folgenden vier Dateien (Platzhalter ersetzen, sonst wortgleich) — **pro Datei
+einzeln die Grundregel anwenden:** existiert eine der vier schon, diese eine überspringen und
+zur Liste „übersprungen" hinzufügen, mit den übrigen drei normal fortfahren.
 
 `{{VAULT_PFAD}}/00-inbox/capture.md`:
 ```markdown
@@ -169,13 +199,20 @@ Quick Capture — landet hier bis zum nächsten `/review`.
 
 ### Schritt 5: CLAUDE.md schreiben — zwei Dateien, zwei Zwecke
 
+Für beide gilt die Grundregel unverändert: existiert die Zieldatei schon, überspringen und zur
+Liste „übersprungen" hinzufügen; sonst schreiben. Die beiden Dateien sind unabhängig
+voneinander — die eine kann übersprungen werden, während die andere geschrieben wird.
+
 **a) Workspace-Root — die operative Landkarte.**
+Existiert bereits eine `CLAUDE.md` im Workspace-Root: überspringen (sie enthält ggf. bereits
+gewachsenen, personalisierten Inhalt aus einer vorherigen Session — siehe Grundregel). Sonst:
 Lies `references/claude-md-template.md`, ersetze alle Platzhalter und schreibe das Ergebnis
 als `CLAUDE.md` in den **Workspace-Root** (nicht in den Vault). Claude Code lädt diese Datei
 bei jedem Start automatisch — das ist der einzige Ort, an dem sie wirkt.
 
 **b) Vault-Root — ein Wegweiser.**
-Schreibe nach `{{VAULT_PFAD}}/CLAUDE.md`:
+Existiert `{{VAULT_PFAD}}/CLAUDE.md` bereits: überspringen. Sonst schreibe nach
+`{{VAULT_PFAD}}/CLAUDE.md`:
 
     # {{NAME}}s Vault
 
@@ -187,7 +224,12 @@ Schreibe nach `{{VAULT_PFAD}}/CLAUDE.md`:
 
 ### Schritt 6: Erster Daily Log
 
-Erstelle `{{VAULT_PFAD}}/05-daily/{{DATUM}}.md` mit **genau einem** Abschnitt — kein
+Existiert `{{VAULT_PFAD}}/05-daily/{{DATUM}}.md` bereits — z.B. weil ein `/shutdown` heute
+schon einen Log-Eintrag geschrieben hat, oder weil ein vorheriger `/setup`-Lauf ihn schon
+angelegt hat — **nicht anfassen**: zur Liste „übersprungen" hinzufügen, fertig mit Schritt 6.
+Kein Nachtragen, kein Zusammenführen — die Grundregel gilt hier genauso wie überall in Phase B.
+
+Existiert die Datei noch nicht: Erstelle sie mit **genau einem** Abschnitt — kein
 „Nächste Schritte"-Abschnitt, der steht bereits in `03-strategy/current-priorities.md`:
 ```markdown
 # {{DATUM}}
@@ -204,7 +246,7 @@ Einrichtung und Arbeitssession sind verschiedene Ereignisse — deshalb eigener 
 
 ---
 
-## Phase C: Abschluss
+## Phase C: Abschluß
 
 Zeige eine kompakte Zusammenfassung:
 
@@ -220,6 +262,9 @@ Erstellt:
 - [X] Projekt-Ordner ([Projektnamen])
 - CLAUDE.md im Workspace, Wegweiser im Vault
 [Falls mehr als 3 Projekte genannt wurden: 1 Zeile, welche drei als „Business (Top 3)" gewählt wurden]
+[Falls die Liste „übersprungen" aus Phase B mindestens einen Eintrag hat: Zeile
+„Unangetastet gelassen (existierten bereits): <vault-relative Pfade, kommasepariert>" — sonst
+diese Zeile komplett weglassen, nicht als leere Liste zeigen]
 
 Nächste Schritte:
 1. Öffne den VAULT-Ordner in Obsidian als Vault

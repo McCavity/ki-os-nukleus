@@ -20,8 +20,18 @@
 > Wo soll der Vault liegen? (Vorschlag: `~/ki-os-vault`)
 
 Extrahiere daraus:
-- `{{VAULT_PFAD}}` — Zielverzeichnis des Vaults. Tilde expandieren. Existiert der Pfad
-  bereits und ist nicht leer: nachfragen, nicht überschreiben.
+- `{{VAULT_PFAD}}` — Zielverzeichnis des Vaults. Tilde expandieren und zu einem absoluten,
+  aufgelösten Pfad machen (relative Angaben und Symlinks eingerechnet — der Pfad zählt so, wie
+  er auf der Platte tatsächlich liegt, nicht wie er getippt wurde).
+  - **Prüfung — liegt der aufgelöste Pfad innerhalb des Workspace-Root** (das Verzeichnis, in
+    dem `/setup` läuft) oder ist mit ihm identisch? Dann **ablehnen**: erklären, daß Workspace
+    (Mechanik — wird als Ganzes aktualisiert/neu geklont) und Vault (privates Wissen) physisch
+    getrennte Verzeichnisse sein müssen, sonst hält `/shutdown`s Git-Erkennung später den
+    Workspace fälschlich für das Vault-Repo und versioniert/pusht Workspace-Inhalte mit.
+    Erneut nach einem Pfad außerhalb des Workspace fragen, bis die Prüfung besteht.
+  - Existiert der aufgelöste Pfad bereits (leer oder nicht): unproblematisch, nicht nachfragen.
+    Phase B überschreibt grundsätzlich keine vorhandene Datei — vorhandene Dateien werden dort
+    übersprungen und im Abschlußbericht gemeldet.
 
 ---
 

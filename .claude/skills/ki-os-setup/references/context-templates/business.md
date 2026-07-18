@@ -28,5 +28,5 @@
 
 <!-- Wie kommen Kunden zu dir? -->
 ```
-[Kanal] → [Erstkontakt] → [Angebot] → [Abschluss]
+[Kanal] → [Erstkontakt] → [Angebot] → [Abschluß]
 ```

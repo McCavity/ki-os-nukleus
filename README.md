@@ -18,6 +18,7 @@ versioniert.
 - Python 3 im PATH (für die Vault-Auflösung)
 - Optional: [Obsidian](https://obsidian.md) — zum Öffnen deines Vaults
 - Optional: Git — zum Versionieren deines Vaults
+- Optional: [uv](https://docs.astral.sh/uv/) — zum Ausführen der Resolver-Testsuite (siehe unten)
 
 ## Schnellstart
 
@@ -49,6 +50,15 @@ Kontext-Dateien und deine persönliche `CLAUDE.md` an.
 | `/plan` | Projekt planen |
 | `/review` | Wöchentliches Review |
 | `/shutdown` | Session beenden |
+
+## Testsuite
+
+`scripts/resolve_vault.py` bringt eine eigene pytest-Suite mit
+(`scripts/test_resolve_vault.py`). Läuft ohne lokale Installation über `uv`:
+
+```bash
+uv run --no-project --with pytest -- python -m pytest scripts/test_resolve_vault.py -q
+```
 
 ## Wie es weitergeht
 

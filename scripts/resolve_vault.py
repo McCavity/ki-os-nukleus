@@ -7,7 +7,7 @@ Jeder Command loest SEINEN Vault deterministisch auf; kein Laufzeit-State
 
 Usage:
   resolve_vault.py <route> [--vault <slug>]
-    <route>        Routing-Key aus vaults.json (z.B. start, lernen)
+    <route>        Routing-Key aus vaults.json (z.B. start, capture)
     --vault <slug> Override: nutzt vaults[slug].path direkt, ignoriert Routing
 
 stdout: absoluter aufgeloester Vault-Pfad; exit 0
@@ -24,6 +24,26 @@ WORKSPACE = Path(__file__).resolve().parent.parent
 VAR = re.compile(r"\$\{([A-Z_][A-Z0-9_]*)\}")
 
 
+def _strip_env_value(raw: str) -> str:
+    """Entfernt umschließende Anführungszeichen und nachgestellte Kommentare.
+
+    Konvention wie in verbreiteten .env-Parsern: ein Wert, der komplett in
+    einfache oder doppelte Anführungszeichen gefasst ist, wird wörtlich
+    übernommen — ein '#' darin ist Teil des Werts, kein Kommentar-Start.
+    Ein unquotierter Wert endet am ersten ' #' (Leerzeichen + Raute).
+    """
+    raw = raw.strip()
+    if len(raw) >= 2 and raw[0] in "\"'":
+        quote = raw[0]
+        end = raw.find(quote, 1)
+        if end != -1:
+            return raw[1:end]
+    idx = raw.find(" #")
+    if idx != -1:
+        raw = raw[:idx]
+    return raw.strip()
+
+
 def _load_env(env_path: Path) -> dict[str, str]:
     env: dict[str, str] = {}
     if env_path.exists():
@@ -32,7 +52,7 @@ def _load_env(env_path: Path) -> dict[str, str]:
             if not line or line.startswith("#") or "=" not in line:
                 continue
             key, _, val = line.partition("=")
-            env[key.strip()] = val.strip()
+            env[key.strip()] = _strip_env_value(val)
     return env
 
 

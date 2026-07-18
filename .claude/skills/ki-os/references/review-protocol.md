@@ -69,6 +69,11 @@ In `09-reference/weekly-log.md` eine Zeile ergänzen:
    - Top 3 Business
    - Top 1 Persönlich
    - Optional: Side Quests
+
+   **Regel:** Max. 4 KW-Blöcke gleichzeitig (aktueller + 3 vorherige). Wird mit dem neuen
+   Block ein fünfter fällig, den ältesten KW-Block komplett entfernen — seine Zusammenfassung
+   lebt bereits in `09-reference/weekly-log.md` (Schritt 5), verloren geht nichts. Analog zur
+   Deckelung in `weekly-log.md`, damit `current-priorities.md` nicht unbegrenzt wächst.
 3. Abschluß: "Review fertig. Guter Start in die Woche!"
 
 ---

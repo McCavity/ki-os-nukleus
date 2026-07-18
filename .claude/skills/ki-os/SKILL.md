@@ -162,7 +162,7 @@ Lies `references/review-protocol.md` für den vollständigen Ablauf.
    - Was war schwierig?
    - Was nimmst du mit (Key Learning)?
 5. **Weekly Log** — 1-3 Zeilen in `$KIOS_VAULT/09-reference/weekly-log.md` schreiben (max 8 Einträge, älteste löschen)
-6. **Nächste Woche planen** — Top 3 Business + Top 1 Persönlich in `$KIOS_VAULT/03-strategy/current-priorities.md` unter neuer KW eintragen
+6. **Nächste Woche planen** — Top 3 Business + Top 1 Persönlich in `$KIOS_VAULT/03-strategy/current-priorities.md` unter neuer KW eintragen (max. 4 KW-Blöcke gleichzeitig, ältesten löschen — siehe `references/review-protocol.md`)
 
 ### Regeln
 - Jeden Schritt mit dem Nutzer durchgehen — nicht alles auf einmal
@@ -217,11 +217,21 @@ Anzuhängender Teil (Fall „Datei existiert bereits"):
 - [Was als nächstes ansteht]
 ```
 
-6. **Vault sichern, falls er ein Git-Repo ist:**
+6. **Vault sichern, falls er ein eigenes Git-Repo ist:**
    - `git -C "$KIOS_VAULT" rev-parse --git-dir` schlägt fehl → Schritt überspringen,
      einmal erwähnen: "Dein Vault ist kein Git-Repo — Versionierung lohnt sich."
-   - Sonst: `git -C "$KIOS_VAULT" status` zeigen, dann
-     `git -C "$KIOS_VAULT" add -A && git -C "$KIOS_VAULT" commit -m "…"`.
+   - Sonst **erst die Zugehörigkeit prüfen, bevor irgendetwas committet wird**:
+     `git -C "$KIOS_VAULT" rev-parse --show-toplevel` gegen den aufgelösten `$KIOS_VAULT`-Pfad
+     vergleichen (beide auf denselben absoluten, aufgelösten Pfad normalisieren — Symlinks
+     eingerechnet). Weichen sie voneinander ab, gehört das gefundene `.git` einem
+     **umschließenden** Repo (typischerweise dem Workspace, wenn der Vault versehentlich
+     innerhalb davon liegt) — dann gilt der Vault als **nicht versioniert**: **nichts
+     committen**, stattdessen einmal erwähnen: "Dein Vault liegt innerhalb eines fremden
+     Git-Repos (`<show-toplevel-Pfad>`) — das ist nicht sein eigenes Repo. Kein automatischer
+     Commit, um nicht versehentlich fremde Inhalte zu versionieren oder zu pushen. Lege bei
+     Bedarf ein eigenes Git-Repo direkt in `$KIOS_VAULT` an."
+   - Stimmen `show-toplevel` und `$KIOS_VAULT` überein: `git -C "$KIOS_VAULT" status` zeigen,
+     dann `git -C "$KIOS_VAULT" add -A && git -C "$KIOS_VAULT" commit -m "…"`.
    - Push nur, wenn ein Remote konfiguriert ist.
 7. Zeige: "Session gesichert. Bis zum nächsten Mal!"
 
