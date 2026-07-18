@@ -33,7 +33,10 @@ Launch erfolgt aus dem `ki-os`-Workspace (hier liegt `.claude/`); der Wissens-Va
 
 1. **Override prüfen:** Enthält `$ARGUMENTS` ein `--vault <slug>`, den Slug an den Resolver durchreichen.
 2. **Vault auflösen** (aus dem Workspace-Root):
-   `KIOS_VAULT=$(python3 scripts/resolve_vault.py start [--vault <slug>])`
+   `KIOS_VAULT=$(python3 scripts/resolve_vault.py <sub-befehl> [--vault <slug>])`
+   `<sub-befehl>` ist der Name des gerade laufenden Sub-Befehls (`start`, `capture`, `plan`,
+   `review` oder `shutdown`) — jeder Sub-Befehl übergibt seine eigene Route; `vaults.json`
+   kennt für alle fünf einen Eintrag, aktuell alle auf den Vault-Slug `privat` gemappt.
    Dieser absolute Pfad ist ab jetzt **`$KIOS_VAULT`**. **ALLE** Vault-Datei-Zugriffe der Sub-Befehle laufen über `$KIOS_VAULT/…` (Read/Glob/Write mit dem aufgelösten Pfad).
 3. **Fehlerfall:** Scheitert die Auflösung (Pfad fehlt, Slug unbekannt → Resolver exit 1), **STOP** mit klarer Meldung. **Kein Fallback auf CWD** — sonst schreibt ein Command still in den Workspace statt in den Vault.
 
@@ -86,7 +89,7 @@ Lies `references/capture-routing.md` für die Kategorisierungs-Logik.
 
 1. Falls kein Inhalt mitgegeben: Frage "Was willst du festhalten?"
 2. Kategorisiere automatisch:
-   - **TASK** → `$KIOS_VAULT/03-strategy/current-priorities.md` (unter passende Priorität P0/P1/P2)
+   - **TASK** → `$KIOS_VAULT/03-strategy/current-priorities.md` (unter passende Sektion: Business (Top 3) / Persönlich / Side Quests)
    - **IDEE** → `$KIOS_VAULT/00-inbox/capture.md` (append)
    - **LOOP (aktiv)** → `$KIOS_VAULT/03-strategy/open-loops.md` (Sektion "Wartend auf")
    - **ENTSCHEIDUNG** → `$KIOS_VAULT/03-strategy/open-loops.md` (Sektion "Offene Entscheidungen")

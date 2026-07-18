@@ -19,18 +19,9 @@ description: KI OS Setup — Erstellt die Vault-Struktur, führt ein 4-Fragen-On
 
 ## Phase A: Onboarding (4 Fragen)
 
-### Frage 0 — Wo soll dein Wissen leben?
-
-"Dein KI-OS besteht aus zwei Hälften: diesem Workspace hier (die Mechanik) und einem Vault
-(dein Wissen). Sie bleiben getrennt, damit du den Workspace aktualisieren kannst, ohne dein
-Wissen anzufassen — und damit du dein Wissen in Obsidian öffnen kannst, ohne die Mechanik zu sehen.
-
-Wo soll der Vault liegen? (Vorschlag: `~/ki-os-vault`)"
-
-Antwort als `{{VAULT_PFAD}}` merken. Tilde expandieren. Existiert der Pfad bereits und ist
-nicht leer: nachfragen, nicht überschreiben.
-
-Lies `references/onboarding-questions.md` für die exakten Fragen und Anweisungen.
+Lies `references/onboarding-questions.md` für die exakten Fragen (Frage 0 bis 3) und
+Anweisungen — dort stehen alle vier an einem Ort, in der Reihenfolge, in der sie gestellt
+werden.
 
 **Wichtig:**
 - Stelle jede Frage einzeln. Warte auf die Antwort bevor du weitergehst.
@@ -99,9 +90,21 @@ Lies die Templates aus `references/context-templates/` und ersetze die Platzhalt
 
 - `references/context-templates/ich.md` → `{{VAULT_PFAD}}/01-context/ich.md` (mit {{NAME}}, {{KURZBESCHREIBUNG}})
 - `references/context-templates/business.md` → `{{VAULT_PFAD}}/01-context/business.md` (mit {{ANGEBOT}}, {{ZIELGRUPPE}}, {{HERAUSFORDERUNG}})
-- `references/context-templates/strategie.md` → `{{VAULT_PFAD}}/03-strategy/current-priorities.md` (mit {{KW}}, {{DATUM}})
+- `references/context-templates/strategie.md` → `{{VAULT_PFAD}}/03-strategy/current-priorities.md` (mit {{KW}}, {{DATUM}}, siehe „Erste Prioritäten ableiten" unten)
 - `references/context-templates/open-loops.md` → `{{VAULT_PFAD}}/03-strategy/open-loops.md` (mit {{DATUM}})
-- `references/context-templates/projekte.md` → `{{VAULT_PFAD}}/04-projects/README.md` (mit {{PROJEKTE}})
+- `references/context-templates/projekte.md` → `{{VAULT_PFAD}}/04-projects/README.md` (mit {{PROJEKTE}}; Spalte „Nächster Schritt" siehe „Erste Prioritäten ableiten" unten)
+
+**Erste Prioritäten ableiten (statt Platzhalter stehenlassen):**
+- Für jedes in Frage 3 genannte Projekt einen konkreten ersten Schritt als Priorität
+  eintragen, abgeleitet aus dem genannten Ziel — keine Platzhalter (`[Priorität N]`)
+  stehenlassen.
+- Nennt der Nutzer mehr als drei Projekte: die drei wichtigsten für „Business (Top 3)"
+  wählen und das in der Abschluß-Zusammenfassung (Phase C) erwähnen.
+- Nennt er gar keine Projekte: einen ehrlichen Startpunkt eintragen (z.B. „Vault einrichten
+  und erste Woche planen") statt eines Platzhalters.
+
+Derselbe abgeleitete erste Schritt füllt auch die Spalte „Nächster Schritt" des jeweiligen
+Projekts in `04-projects/README.md` — eine Ableitung, zwei Stellen.
 
 Erstelle zusätzlich für jedes genannte Projekt einen Unterordner mit `README.md`:
 - `{{VAULT_PFAD}}/04-projects/{projektname-kebab}/README.md` mit Ziel und Status "Aktiv"
@@ -109,10 +112,60 @@ Erstelle zusätzlich für jedes genannte Projekt einen Unterordner mit `README.m
 
 ### Schritt 4: Weitere Seed-Dateien
 
-- `{{VAULT_PFAD}}/00-inbox/capture.md` — Leere Inbox mit Header
-- `{{VAULT_PFAD}}/02-brand/brand-voice.md` — Minimales Template (Ton, Stil, Regeln)
-- `{{VAULT_PFAD}}/09-reference/weekly-log.md` — Leerer Weekly Log mit Tabellenheader
-- `{{VAULT_PFAD}}/09-reference/completed-projects.md` — Leeres Archiv mit Header
+Schreibe exakt die folgenden vier Dateien (Platzhalter ersetzen, sonst wortgleich):
+
+`{{VAULT_PFAD}}/00-inbox/capture.md`:
+```markdown
+# Capture
+
+> Letzte Aktualisierung: {{DATUM}}
+> Siehe auch: [[current-priorities]]
+
+Quick Capture — landet hier bis zum nächsten `/review`.
+```
+
+`{{VAULT_PFAD}}/02-brand/brand-voice.md`:
+```markdown
+# Brand Voice
+
+> Letzte Aktualisierung: {{DATUM}}
+> Siehe auch: [[ich]]
+
+## Ton
+
+<!-- Wie klingst du? Locker, sachlich, humorvoll... -->
+
+## Stil
+
+<!-- Kurze Sätze? Lange Ausführungen? Aktiv/Passiv? -->
+
+## Regeln
+
+<!-- Was vermeiden? Lieblingsformulierungen? -->
+```
+
+`{{VAULT_PFAD}}/09-reference/weekly-log.md`:
+```markdown
+# Weekly Log
+
+> Letzte Aktualisierung: {{DATUM}}
+> Siehe auch: [[current-priorities]]
+> Rolling Log — max. 8 Einträge, ältester wird beim `/review` gelöscht.
+
+| KW | Datumsbereich | Zusammenfassung |
+|---|---|---|
+```
+
+`{{VAULT_PFAD}}/09-reference/completed-projects.md`:
+```markdown
+# Abgeschlossene Projekte
+
+> Letzte Aktualisierung: {{DATUM}}
+> Siehe auch: [[current-priorities]]
+
+| Projekt | Abgeschlossen |
+|---|---|
+```
 
 ### Schritt 5: CLAUDE.md schreiben — zwei Dateien, zwei Zwecke
 
@@ -140,12 +193,12 @@ Erstelle `{{VAULT_PFAD}}/05-daily/{{DATUM}}.md`:
 
 > Siehe auch: [[ich]], [[current-priorities]]
 
-## Setup
+## Session
 - KI OS eingerichtet
 - Vault-Struktur erstellt
 - Kontext personalisiert
 
-## Nächste Schritte
+## Nächste Session
 [Basierend auf den genannten Projekten die wichtigsten 2-3 nächsten Schritte auflisten]
 ```
 
@@ -166,6 +219,7 @@ Erstellt:
 - [X] Kontext-Dateien (ich, business, strategie, open-loops)
 - [X] Projekt-Ordner ([Projektnamen])
 - CLAUDE.md im Workspace, Wegweiser im Vault
+[Falls mehr als 3 Projekte genannt wurden: 1 Zeile, welche drei als „Business (Top 3)" gewählt wurden]
 
 Nächste Schritte:
 1. Öffne den VAULT-Ordner in Obsidian als Vault

@@ -6,16 +6,20 @@ Wenn der Nutzer etwas festhalten will, kategorisiere automatisch:
 
 | Kategorie | Erkennung | Zieldatei | Sektion |
 |---|---|---|---|
-| **TASK** | Konkrete Aufgabe, klares Ergebnis, braucht Aktion | `03-strategy/current-priorities.md` | Passende Priorität (P0/P1/P2) |
+| **TASK** | Konkrete Aufgabe, klares Ergebnis, braucht Aktion | `03-strategy/current-priorities.md` | Passende Sektion (Business (Top 3) / Persönlich / Side Quests) |
 | **IDEE** | Vage, braucht Reifung, kein klarer nächster Schritt | `00-inbox/capture.md` | Append am Ende |
 | **LOOP (aktiv)** | Wartet auf jemanden/etwas Externes, aktuell relevant | `03-strategy/open-loops.md` | Sektion "Wartend auf" |
 | **ENTSCHEIDUNG** | Muß entschieden werden, Optionen vorhanden | `03-strategy/open-loops.md` | Sektion "Offene Entscheidungen" |
 
-## Prioritäten für Tasks
+## Sektionen für Tasks
 
-- **P0** — Heute oder morgen erledigen
-- **P1** — Diese Woche
-- **P2** — Später / Mittelfristig
+`current-priorities.md` kennt drei Sektionen:
+
+- **Business (Top 3)** — geschäftlich relevante Aufgaben
+- **Persönlich** — private Aufgaben
+- **Side Quests** — optionale, nice-to-have Aufgaben
+
+Ordne die Aufgabe der inhaltlich passenden Sektion zu.
 
 ## Regeln
 

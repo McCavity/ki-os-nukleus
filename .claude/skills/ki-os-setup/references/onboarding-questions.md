@@ -10,6 +10,21 @@
 
 ---
 
+## Frage 0: Wo soll dein Wissen leben?
+
+> **Dein KI-OS besteht aus zwei Hälften: diesem Workspace hier (die Mechanik) und einem
+> Vault (dein Wissen).** Sie bleiben getrennt, damit du den Workspace aktualisieren kannst,
+> ohne dein Wissen anzufassen — und damit du dein Wissen in Obsidian öffnen kannst, ohne die
+> Mechanik zu sehen.
+>
+> Wo soll der Vault liegen? (Vorschlag: `~/ki-os-vault`)
+
+Extrahiere daraus:
+- `{{VAULT_PFAD}}` — Zielverzeichnis des Vaults. Tilde expandieren. Existiert der Pfad
+  bereits und ist nicht leer: nachfragen, nicht überschreiben.
+
+---
+
 ## Frage 1: Wer bist du?
 
 > **Erzähl mir kurz von dir.**

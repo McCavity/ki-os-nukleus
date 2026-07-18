@@ -31,12 +31,13 @@ Dann im Chat: `/setup` — der Rest läuft geführt. Du beantwortest ein paar Fr
 Vault liegen soll, wer du bist, woran du arbeitest), und `/setup` legt Vault-Struktur,
 Kontext-Dateien und deine persönliche `CLAUDE.md` an.
 
-> **Hinweis zur `CLAUDE.md`:** Dieses Repo liefert nur `CLAUDE.md.template` aus — eine
-> generische Fassung ohne Personenbezug. `/setup` erzeugt daraus deine persönliche,
-> operative `CLAUDE.md` im Workspace-Root. Diese Datei ist bewußt **nicht versioniert**
-> (siehe `.gitignore`): Sie enthält deinen Namen und deine Beschreibung, und der Workspace
-> ist genau das Verzeichnis, das du geklont hast — eine getrackte, personalisierte
-> `CLAUDE.md` würde bei einem eigenen `git add -A` deine Daten in dein Repo committen.
+> **Hinweis zur `CLAUDE.md`:** Dieses Repo liefert im Workspace-Root **keine** `CLAUDE.md`
+> aus. `/setup` erzeugt deine persönliche, operative `CLAUDE.md` aus einer Skill-internen
+> Vorlage (`.claude/skills/ki-os-setup/references/claude-md-template.md`) und schreibt das
+> Ergebnis in den Workspace-Root. Diese Datei ist bewußt **nicht versioniert** (siehe
+> `.gitignore`): Sie enthält deinen Namen und deine Beschreibung, und der Workspace ist genau
+> das Verzeichnis, das du geklont hast — eine getrackte, personalisierte `CLAUDE.md` würde bei
+> einem eigenen `git add -A` deine Daten in dein Repo committen.
 
 ## Die sechs Befehle
 

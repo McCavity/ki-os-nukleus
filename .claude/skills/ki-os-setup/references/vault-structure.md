@@ -21,12 +21,12 @@ mkdir -p 09-reference
 
 | Datei | Quelle | Platzhalter |
 |---|---|---|
-| `00-inbox/capture.md` | Inline (leerer Header) | — |
+| `00-inbox/capture.md` | Inline (SKILL.md Schritt 4) | DATUM |
 | `00-inbox/_guide.md` | `folder-guides/00-inbox.md` | — |
 | `01-context/ich.md` | `context-templates/ich.md` | NAME, KURZBESCHREIBUNG |
 | `01-context/business.md` | `context-templates/business.md` | ANGEBOT, ZIELGRUPPE, HERAUSFORDERUNG |
 | `01-context/_guide.md` | `folder-guides/01-context.md` | — |
-| `02-brand/brand-voice.md` | Inline (minimales Template) | — |
+| `02-brand/brand-voice.md` | Inline (SKILL.md Schritt 4) | DATUM |
 | `02-brand/_guide.md` | `folder-guides/02-brand.md` | — |
 | `03-strategy/current-priorities.md` | `context-templates/strategie.md` | KW, DATUM |
 | `03-strategy/open-loops.md` | `context-templates/open-loops.md` | DATUM |
@@ -39,8 +39,8 @@ mkdir -p 09-reference
 | `06-team/_guide.md` | `folder-guides/06-team.md` | — |
 | `07-intelligence/_guide.md` | `folder-guides/07-intelligence.md` | — |
 | `08-resources/_guide.md` | `folder-guides/08-resources.md` | — |
-| `09-reference/weekly-log.md` | Inline (leerer Log) | — |
-| `09-reference/completed-projects.md` | Inline (leeres Archiv) | — |
+| `09-reference/weekly-log.md` | Inline (SKILL.md Schritt 4) | DATUM |
+| `09-reference/completed-projects.md` | Inline (SKILL.md Schritt 4) | DATUM |
 | `09-reference/_guide.md` | `folder-guides/09-reference.md` | — |
 | `CLAUDE.md` | Inline (Wegweiser-Stub, SKILL.md Schritt 5b) | NAME |
 

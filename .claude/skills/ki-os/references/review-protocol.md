@@ -9,7 +9,7 @@ Am besten Sonntag abend oder Montag morgen. Jeden Schritt einzeln mit dem Nutzer
 1. Lies `00-inbox/capture.md`
 2. Falls leer: "Inbox ist leer — weiter zum nächsten Schritt."
 3. Falls Items vorhanden: Jedes Item einzeln zeigen und fragen:
-   - **Machen** → Als Task in `current-priorities.md` eintragen (P0/P1/P2)
+   - **Machen** → Als Task in `current-priorities.md` eintragen (passende Sektion: Business (Top 3) / Persönlich / Side Quests)
    - **Planen** → Projekt-Idee in `04-projects/`, aktiver Loop in `open-loops.md` (Sektion „Wartend auf...")
    - **Löschen** → Entfernen
 4. Nach Verarbeitung: `capture.md` leeren (nur Header behalten)

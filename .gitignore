@@ -3,6 +3,7 @@ __pycache__/
 *.pyc
 .pytest_cache/
 
-# Personalisierte, operative CLAUDE.md — von /setup aus CLAUDE.md.template erzeugt.
+# Personalisierte, operative CLAUDE.md — von /setup aus der Skill-internen Vorlage
+# .claude/skills/ki-os-setup/references/claude-md-template.md erzeugt.
 # Enthält Namen/Beschreibung des Nutzers, daher nie getrackt.
 CLAUDE.md
