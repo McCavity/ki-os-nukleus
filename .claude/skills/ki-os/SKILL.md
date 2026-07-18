@@ -7,9 +7,9 @@ description: KI OS — täglicher Arbeitspartner. Routet nach Sub-Befehl. "start
 
 ## Pre-flight Check
 
-1. Prüfe ob `CLAUDE.md` im Vault-Root existiert und personalisiert ist (nicht das Setup-Template)
-2. Falls nicht personalisiert: "Führe zuerst `/setup` aus, um dein KI OS einzurichten."
-3. Falls personalisiert: Weiter mit Routing
+1. Vault auflösen wie in der Preamble unten beschrieben. Scheitert die Auflösung: "Es ist noch kein Vault eingerichtet. Führe zuerst `/setup` aus." — dann **STOP**.
+2. Prüfe, ob `$KIOS_VAULT/01-context/ich.md` existiert. Fehlt sie: "Dein Vault ist noch nicht befüllt. Führe zuerst `/setup` aus." — dann **STOP**.
+3. Sonst: Weiter mit Routing.
 
 ## Routing
 
