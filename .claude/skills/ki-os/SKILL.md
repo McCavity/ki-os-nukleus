@@ -64,6 +64,9 @@ Session starten. Kontext laden, Status zeigen.
 1. [höchste Priorität aus current-priorities]
 2. [...]
 3. [...]
+[Falls die Sektion "Business (Top 3)" in current-priorities.md mehr als drei Einträge
+enthält: eine Zeile "+ [N] weitere in [[current-priorities]]" mit der tatsächlichen Anzahl
+zusätzlicher Einträge. Enthält sie nicht mehr als drei: diese Zeile komplett weglassen.]
 
 **Open Loops:** [X] aktive Loops, davon [Y] älter als 2 Wochen
 **Inbox:** [X] Items
@@ -178,14 +181,33 @@ Session beenden. Status sichern.
 2. `$KIOS_VAULT/03-strategy/current-priorities.md` aktualisieren — erst `Read`en.
 3. Frage: "Offene Gedanken oder Loops?"
 4. `$KIOS_VAULT/03-strategy/open-loops.md` aktualisieren falls nötig — erst `Read`en.
-5. Daily Log schreiben/ergänzen in `$KIOS_VAULT/05-daily/{{DATUM}}.md`
-   (Vorlage siehe unten; existiert die Datei bereits, wird nur angehängt — append-only):
+5. Daily Log schreiben/ergänzen in `$KIOS_VAULT/05-daily/{{DATUM}}.md`:
+   - **Datei existiert noch nicht:** komplett neu anlegen — volle Vorlage unten, inklusive
+     Titel und `> Siehe auch:`-Zeile.
+   - **Datei existiert bereits** (typischerweise weil `/setup` heute schon einen Log mit
+     `## Einrichtung` angelegt hat): **nur** die beiden Abschnitte `## Session` und
+     `## Nächste Session` ans Dateiende anhängen. Titel (`# {{DATUM}}`) und
+     `> Siehe auch:`-Zeile **nicht** wiederholen — die stehen bereits einmal am Dateianfang.
+
+Volle Vorlage (Fall „Datei existiert noch nicht"):
 
 ```markdown
 # {{DATUM}}
 
 > Siehe auch: [[ich]], [[current-priorities]]
 
+## Session
+- [Was passiert ist — Stichpunkte]
+- [Entscheidungen]
+- [Was erstellt/geändert wurde]
+
+## Nächste Session
+- [Was als nächstes ansteht]
+```
+
+Anzuhängender Teil (Fall „Datei existiert bereits"):
+
+```markdown
 ## Session
 - [Was passiert ist — Stichpunkte]
 - [Entscheidungen]

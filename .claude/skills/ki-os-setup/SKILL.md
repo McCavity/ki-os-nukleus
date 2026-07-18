@@ -187,20 +187,20 @@ Schreibe nach `{{VAULT_PFAD}}/CLAUDE.md`:
 
 ### Schritt 6: Erster Daily Log
 
-Erstelle `{{VAULT_PFAD}}/05-daily/{{DATUM}}.md`:
+Erstelle `{{VAULT_PFAD}}/05-daily/{{DATUM}}.md` mit **genau einem** Abschnitt — kein
+„Nächste Schritte"-Abschnitt, der steht bereits in `03-strategy/current-priorities.md`:
 ```markdown
 # {{DATUM}}
 
 > Siehe auch: [[ich]], [[current-priorities]]
 
-## Session
-- KI OS eingerichtet
-- Vault-Struktur erstellt
-- Kontext personalisiert
-
-## Nächste Session
-[Basierend auf den genannten Projekten die wichtigsten 2-3 nächsten Schritte auflisten]
+## Einrichtung
+[Kurze Zusammenfassung in 2-3 Stichpunkten: welche Vault-Struktur, welche Kontext-Dateien
+und welche Projekte beim Setup angelegt wurden]
 ```
+
+Einrichtung und Arbeitssession sind verschiedene Ereignisse — deshalb eigener Abschnittsname
+`## Einrichtung`, nicht `## Session` (das gehört `/shutdown`, siehe dort).
 
 ---
 
@@ -238,3 +238,10 @@ Alle Commands: /start | /capture | /plan | /review | /shutdown
 - Wiki-Links ([[dateiname]]) in JEDER erstellten Datei
 - Dateinamen: kebab-case, keine Emojis, keine Umlaute
 - Keine leeren Placeholder-Dateien — jede Datei hat mindestens einen sinnvollen Header
+- **Notation in dieser Datei:** `{{PLATZHALTER}}` steht für einen echten Wert, der eingesetzt
+  wird (Onboarding-Antwort, Datum, KW) — reine Textersetzung. Eckige Klammern `[...]` in
+  Anweisungen (z.B. Schritt 6, Phase C) sind Hinweise ans Modell, was inhaltlich hingehört —
+  sie werden beim Schreiben durch echten, abgeleiteten Text ersetzt, nie wörtlich übernommen.
+  Das ist etwas anderes als die `[...]`-Einträge in den Context-Templates (`ich.md`,
+  `business.md`): die bleiben absichtlich als Platzhalter für den Nutzer stehen, weil dafür
+  keine Onboarding-Antwort existiert — nicht verwechseln.

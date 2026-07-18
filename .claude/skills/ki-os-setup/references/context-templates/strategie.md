@@ -13,11 +13,13 @@
 
 ### Persönlich
 
-- [ ] [Priorität 1]
+*Noch leer. Hier stehen private Vorhaben (kein Business) — trag sie direkt ein oder halte sie
+per `/capture` fest, dann landen sie automatisch hier.*
 
 ### Side Quests
 
-- [ ] [Optional]
+*Noch leer. Hier stehen optionale Ideen ohne Deadline — trag sie direkt ein oder halte sie
+per `/capture` fest, dann landen sie automatisch hier.*
 
 ---
 
