@@ -113,8 +113,9 @@ Implementierungsplan für ein Projekt erstellen.
 ### Schritte
 
 1. Frage: "Welches Projekt? Was ist das Ziel?"
-2. Falls Projekt in `$KIOS_VAULT/04-projects/` existiert: README.md lesen für Kontext
-3. Falls neues Projekt: Ordner unter `$KIOS_VAULT/04-projects/` anlegen mit README.md
+2. Falls Projekt in `$KIOS_VAULT/04-projects/` existiert: die Projekt-Notiz lesen für Kontext
+   (Datei heißt wie der Ordner, `{name}.md` — nicht `README.md`)
+3. Falls neues Projekt: Ordner unter `$KIOS_VAULT/04-projects/` anlegen mit `{name}.md`
 4. Plan schreiben in `$KIOS_VAULT/04-projects/{name}/plan-{{DATUM}}.md`:
 
 ```markdown
@@ -156,7 +157,7 @@ Lies `references/review-protocol.md` für den vollständigen Ablauf.
 
 1. **Inbox leeren** — Lies `$KIOS_VAULT/00-inbox/capture.md`. Für jedes Item fragen: Machen, Planen, oder Löschen?
 2. **Open Loops prüfen** — Lies `$KIOS_VAULT/03-strategy/open-loops.md`. Loops älter als 2 Wochen: Eskalieren oder schließen? (Voller Ablauf: `references/review-protocol.md`.)
-3. **Projekte updaten** — Frage: "Was hat sich bei deinen Projekten bewegt?" Status in den READMEs aktualisieren. Erledigtes → `$KIOS_VAULT/09-reference/completed-projects.md`
+3. **Projekte updaten** — Frage: "Was hat sich bei deinen Projekten bewegt?" Status in den jeweiligen Projekt-Notizen (`04-projects/{name}/{name}.md`) aktualisieren. Erledigtes → `$KIOS_VAULT/09-reference/completed-projects.md`
 4. **Reflexion** — 3 Fragen:
    - Was lief gut diese Woche?
    - Was war schwierig?

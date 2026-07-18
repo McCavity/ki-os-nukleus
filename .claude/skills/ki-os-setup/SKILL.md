@@ -132,11 +132,13 @@ werden (nicht übersprungen):**
 Derselbe abgeleitete erste Schritt füllt auch die Spalte „Nächster Schritt" des jeweiligen
 Projekts in `04-projects/README.md` — eine Ableitung, zwei Stellen.
 
-Erstelle zusätzlich für jedes genannte Projekt einen Unterordner mit `README.md`
-(`{{VAULT_PFAD}}/04-projects/{projektname-kebab}/README.md`, mit Ziel und Status "Aktiv",
-verlinkt mit `[[ich]]` und ggf. `[[business]]`) — **auch hier pro Projekt einzeln die
-Grundregel anwenden:** existiert die `README.md` des Projekts schon, überspringen; sonst
-schreiben.
+Erstelle zusätzlich für jedes genannte Projekt einen Unterordner mit einer Notiz, die wie das
+Projekt heißt — **nicht** `README.md`: Obsidian löst Wikilinks über den Dateinamen auf, und
+`[[README]]` wäre bei mehreren Projekten mehrdeutig. Der Dateiname ist derselbe kebab-case-Slug
+wie der Ordnername (`{projektname-kebab}`), damit Ordner und Datei zusammenpassen:
+`{{VAULT_PFAD}}/04-projects/{projektname-kebab}/{projektname-kebab}.md`, mit Ziel und Status
+"Aktiv", verlinkt mit `[[ich]]` und ggf. `[[business]]` — **auch hier pro Projekt einzeln die
+Grundregel anwenden:** existiert die Notiz des Projekts schon, überspringen; sonst schreiben.
 
 ### Schritt 4: Weitere Seed-Dateien
 

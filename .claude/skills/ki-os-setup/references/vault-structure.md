@@ -32,7 +32,7 @@ mkdir -p 09-reference
 | `03-strategy/open-loops.md` | `context-templates/open-loops.md` | DATUM |
 | `03-strategy/_guide.md` | `folder-guides/03-strategy.md` | — |
 | `04-projects/README.md` | `context-templates/projekte.md` | PROJEKTE |
-| `04-projects/{name}/README.md` | Inline (pro Projekt) | Projektname, Ziel |
+| `04-projects/{name}/{name}.md` | Inline (pro Projekt) | Projektname, Ziel |
 | `04-projects/_guide.md` | `folder-guides/04-projects.md` | — |
 | `05-daily/{{DATUM}}.md` | Inline (erster Daily Log) | DATUM |
 | `05-daily/_guide.md` | `folder-guides/05-daily.md` | — |

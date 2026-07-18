@@ -31,7 +31,8 @@ Am besten Sonntag abend oder Montag morgen. Jeden Schritt einzeln mit dem Nutzer
 ## Schritt 3: Projekte updaten
 
 1. Frage: "Was hat sich bei deinen Projekten bewegt?"
-2. Status in den jeweiligen `README.md` Dateien aktualisieren
+2. Status in den jeweiligen Projekt-Notizen aktualisieren (`04-projects/{name}/{name}.md` —
+   nicht `README.md`)
 3. Abgeschlossene Projekte:
    - Eintrag in `09-reference/completed-projects.md`
    - Ordner kann später nach `09-reference/` verschoben werden
