@@ -42,4 +42,10 @@ mkdir -p 09-reference
 | `09-reference/weekly-log.md` | Inline (leerer Log) | — |
 | `09-reference/completed-projects.md` | Inline (leeres Archiv) | — |
 | `09-reference/_guide.md` | `folder-guides/09-reference.md` | — |
-| `CLAUDE.md` | `claude-md-template.md` | NAME, KURZBESCHREIBUNG, PROJEKTE |
+| `CLAUDE.md` | Inline (Wegweiser-Stub, SKILL.md Schritt 5b) | NAME |
+
+> **Nicht in dieser Tabelle:** die operative, personalisierte `CLAUDE.md` (aus
+> `claude-md-template.md`, Platzhalter NAME/KURZBESCHREIBUNG/PROJEKTE). Sie ist **keine**
+> Vault-Datei — sie wird in den **Workspace-Root** geschrieben, nicht relativ zu
+> `{{VAULT_PFAD}}/`. Siehe `SKILL.md` Schritt 5a. Der `CLAUDE.md`-Eintrag oben in der Tabelle
+> ist der davon getrennte, kurze Wegweiser-Stub im Vault-Root (Schritt 5b).

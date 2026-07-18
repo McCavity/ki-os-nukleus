@@ -1,6 +1,6 @@
 ---
 name: ki-os-setup
-description: KI OS Setup — Erstellt die Vault-Struktur, führt ein 3-Fragen-Onboarding durch und personalisiert alle Dateien. Verwende wenn der Nutzer /setup ausführt, "einrichten", "setup", "bootstrap" oder "initialisieren" sagt.
+description: KI OS Setup — Erstellt die Vault-Struktur, führt ein 4-Fragen-Onboarding durch und personalisiert alle Dateien. Verwende wenn der Nutzer /setup ausführt, "einrichten", "setup", "bootstrap" oder "initialisieren" sagt.
 ---
 
 # KI OS — Setup + Onboarding
@@ -17,7 +17,7 @@ description: KI OS Setup — Erstellt die Vault-Struktur, führt ein 3-Fragen-On
 
 ---
 
-## Phase A: Onboarding (3 Fragen)
+## Phase A: Onboarding (4 Fragen)
 
 ### Frage 0 — Wo soll dein Wissen leben?
 

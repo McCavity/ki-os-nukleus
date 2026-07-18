@@ -2,3 +2,7 @@
 __pycache__/
 *.pyc
 .pytest_cache/
+
+# Personalisierte, operative CLAUDE.md — von /setup aus CLAUDE.md.template erzeugt.
+# Enthält Namen/Beschreibung des Nutzers, daher nie getrackt.
+CLAUDE.md
