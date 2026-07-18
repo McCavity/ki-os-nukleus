@@ -7,8 +7,8 @@ description: KI OS — täglicher Arbeitspartner. Routet nach Sub-Befehl. "start
 
 ## Pre-flight Check
 
-1. Pruefe ob `CLAUDE.md` im Vault-Root existiert und personalisiert ist (nicht das Setup-Template)
-2. Falls nicht personalisiert: "Fuehre zuerst `/setup` aus, um dein KI OS einzurichten."
+1. Prüfe ob `CLAUDE.md` im Vault-Root existiert und personalisiert ist (nicht das Setup-Template)
+2. Falls nicht personalisiert: "Führe zuerst `/setup` aus, um dein KI OS einzurichten."
 3. Falls personalisiert: Weiter mit Routing
 
 ## Routing
@@ -20,7 +20,7 @@ Erkenne den Sub-Befehl aus `$ARGUMENTS` oder der Nutzer-Nachricht:
 | "start", "prime", "los", "starte session", "guten morgen" | → [Start](#start) |
 | "capture", "festhalten", "notiz", "merken" | → [Capture](#capture) |
 | "plan", "planen", "strukturieren" | → [Plan](#plan) |
-| "review", "rueckblick", "wochenreview" | → [Review](#review) |
+| "review", "rückblick", "wochenreview" | → [Review](#review) |
 | "shutdown", "ende", "fertig", "session beenden" | → [Shutdown](#shutdown) |
 
 Falls unklar: Diese Tabelle zeigen und fragen was gebraucht wird.
@@ -45,8 +45,8 @@ Session starten. Kontext laden, Status zeigen.
 
 ### Schritte
 
-1. Lies die operative `CLAUDE.md` (Workspace-Root, ist bereits geladen — bestaetigen)
-2. **Systemzeit abrufen:** `date "+%A %d.%m.%Y %H:%M"` — Wochentag, Datum und Uhrzeit fuer das Dashboard und zeitabhaengige Entscheidungen verwenden
+1. Lies die operative `CLAUDE.md` (Workspace-Root, ist bereits geladen — bestätigen)
+2. **Systemzeit abrufen:** `date "+%A %d.%m.%Y %H:%M"` — Wochentag, Datum und Uhrzeit für das Dashboard und zeitabhängige Entscheidungen verwenden
 3. Lies `$KIOS_VAULT/01-context/ich.md` und `$KIOS_VAULT/01-context/business.md`
 4. Lies `$KIOS_VAULT/03-strategy/current-priorities.md`
 5. Lies `$KIOS_VAULT/03-strategy/open-loops.md`
@@ -80,34 +80,34 @@ Bereit. Was steht an?
 
 Schnelle Erfassung von Gedanken, Aufgaben, Loops.
 
-Lies `references/capture-routing.md` fuer die Kategorisierungs-Logik.
+Lies `references/capture-routing.md` für die Kategorisierungs-Logik.
 
 ### Schritte
 
 1. Falls kein Inhalt mitgegeben: Frage "Was willst du festhalten?"
 2. Kategorisiere automatisch:
-   - **TASK** → `$KIOS_VAULT/03-strategy/current-priorities.md` (unter passende Prioritaet P0/P1/P2)
+   - **TASK** → `$KIOS_VAULT/03-strategy/current-priorities.md` (unter passende Priorität P0/P1/P2)
    - **IDEE** → `$KIOS_VAULT/00-inbox/capture.md` (append)
    - **LOOP (aktiv)** → `$KIOS_VAULT/03-strategy/open-loops.md` (Sektion "Wartend auf")
    - **ENTSCHEIDUNG** → `$KIOS_VAULT/03-strategy/open-loops.md` (Sektion "Offene Entscheidungen")
-3. Bestaetigung: "Gespeichert in [[dateiname]] als [Kategorie]. Noch was?"
+3. Bestätigung: "Gespeichert in [[dateiname]] als [Kategorie]. Noch was?"
 4. Loop bis Nutzer fertig ist
 
 ### Regeln
 - Im Zweifel: als IDEE in Inbox — wird beim Review sortiert
 - Relative Daten in absolute umwandeln ("Donnerstag" → konkretes Datum)
-- Wiki-Links setzen wenn Projekte oder Personen erwaehnt werden
+- Wiki-Links setzen wenn Projekte oder Personen erwähnt werden
 
 ---
 
 ## Plan
 
-Implementierungsplan fuer ein Projekt erstellen.
+Implementierungsplan für ein Projekt erstellen.
 
 ### Schritte
 
 1. Frage: "Welches Projekt? Was ist das Ziel?"
-2. Falls Projekt in `$KIOS_VAULT/04-projects/` existiert: README.md lesen fuer Kontext
+2. Falls Projekt in `$KIOS_VAULT/04-projects/` existiert: README.md lesen für Kontext
 3. Falls neues Projekt: Ordner unter `$KIOS_VAULT/04-projects/` anlegen mit README.md
 4. Plan schreiben in `$KIOS_VAULT/04-projects/{name}/plan-{{DATUM}}.md`:
 
@@ -130,33 +130,33 @@ Implementierungsplan fuer ein Projekt erstellen.
 3. [...]
 
 ## Risiken
-- [Was koennte schiefgehen]
+- [Was könnte schiefgehen]
 
 ## Erfolgskriterien
-- [ ] [Woran erkennt man dass es fertig ist]
+- [ ] [Woran erkennt man daß es fertig ist]
 ```
 
-5. Bestaetigung: "Plan erstellt in [[projektname]]. [X] Schritte. Soll ich anfangen?"
+5. Bestätigung: "Plan erstellt in [[projektname]]. [X] Schritte. Soll ich anfangen?"
 
 ---
 
 ## Review
 
-Woechentliches Review — am besten Sonntag oder Montag.
+Wöchentliches Review — am besten Sonntag oder Montag.
 
-Lies `references/review-protocol.md` fuer den vollstaendigen Ablauf.
+Lies `references/review-protocol.md` für den vollständigen Ablauf.
 
 ### Schritte
 
-1. **Inbox leeren** — Lies `$KIOS_VAULT/00-inbox/capture.md`. Fuer jedes Item fragen: Machen, Planen, oder Loeschen?
+1. **Inbox leeren** — Lies `$KIOS_VAULT/00-inbox/capture.md`. Für jedes Item fragen: Machen, Planen, oder Löschen?
 2. **Open Loops prüfen** — Lies `$KIOS_VAULT/03-strategy/open-loops.md`. Loops älter als 2 Wochen: Eskalieren oder schließen? (Voller Ablauf: `references/review-protocol.md`.)
 3. **Projekte updaten** — Frage: "Was hat sich bei deinen Projekten bewegt?" Status in den READMEs aktualisieren. Erledigtes → `$KIOS_VAULT/09-reference/completed-projects.md`
 4. **Reflexion** — 3 Fragen:
    - Was lief gut diese Woche?
    - Was war schwierig?
    - Was nimmst du mit (Key Learning)?
-5. **Weekly Log** — 1-3 Zeilen in `$KIOS_VAULT/09-reference/weekly-log.md` schreiben (max 8 Eintraege, aelteste loeschen)
-6. **Naechste Woche planen** — Top 3 Business + Top 1 Persoenlich in `$KIOS_VAULT/03-strategy/current-priorities.md` unter neuer KW eintragen
+5. **Weekly Log** — 1-3 Zeilen in `$KIOS_VAULT/09-reference/weekly-log.md` schreiben (max 8 Einträge, älteste löschen)
+6. **Nächste Woche planen** — Top 3 Business + Top 1 Persönlich in `$KIOS_VAULT/03-strategy/current-priorities.md` unter neuer KW eintragen
 
 ### Regeln
 - Jeden Schritt mit dem Nutzer durchgehen — nicht alles auf einmal
@@ -176,7 +176,7 @@ Session beenden. Status sichern.
 3. Frage: "Offene Gedanken oder Loops?"
 4. `$KIOS_VAULT/03-strategy/open-loops.md` aktualisieren falls nötig — erst `Read`en.
 5. Daily Log schreiben/ergänzen in `$KIOS_VAULT/05-daily/{{DATUM}}.md`
-   (Vorlage wie in der Quelle; existiert die Datei, nur anhängen — append-only):
+   (Vorlage siehe unten; existiert die Datei bereits, wird nur angehängt — append-only):
 
 ```markdown
 # {{DATUM}}
@@ -186,10 +186,10 @@ Session beenden. Status sichern.
 ## Session
 - [Was passiert ist — Stichpunkte]
 - [Entscheidungen]
-- [Was erstellt/geaendert wurde]
+- [Was erstellt/geändert wurde]
 
-## Naechste Session
-- [Was als naechstes ansteht]
+## Nächste Session
+- [Was als nächstes ansteht]
 ```
 
 6. **Vault sichern, falls er ein Git-Repo ist:**
@@ -204,11 +204,11 @@ Session beenden. Status sichern.
 
 ## Allgemeine Regeln
 
-- **Engine vs. Vault (Pflicht):** Launch aus dem `ki-os`-Workspace. **Alle Wissens-/Vault-Pfade** — hier UND in den `references/…`-Protokollen (`00–09`, `memory/`, Projekte, Loops, Lehren-Zieldateien) — sind relativ zu **`$KIOS_VAULT`** (Preamble aufgelöst). **Engine-interne Pfade** (`.claude/…`, `references/…`, `scripts/…`, die operative `CLAUDE.md`) sind **Workspace-relativ**. Steht in einer Referenz ein bloßer Vault-Pfad wie `03-strategy/…`, ist `$KIOS_VAULT/` davorzusetzen.
-- **Read vor Edit (Pflicht):** Die grossen Vault-Dateien (`03-strategy/current-priorities.md`, `03-strategy/open-loops.md`, Vault-`CLAUDE.md`) **immer erst frisch `Read`en, bevor du editierst** — auch bei vermeintlichen Ein-Zeilen-Aenderungen. Ein Edit ohne vorheriges Read bricht mit „File has not been read yet" ab.
-- **Wiki-Links ueberall:** Jede Referenz auf eine Vault-Datei, Person oder Projekt → `[[wikilink]]`
+- **Engine vs. Vault (Pflicht):** Launch aus dem `ki-os`-Workspace. **Alle Wissens-/Vault-Pfade** — hier UND in den `references/…`-Protokollen (`00–09`, Projekte, Loops) — sind relativ zu **`$KIOS_VAULT`** (Preamble aufgelöst). **Engine-interne Pfade** (`.claude/…`, `references/…`, `scripts/…`, die operative `CLAUDE.md`) sind **Workspace-relativ**. Steht in einer Referenz ein bloßer Vault-Pfad wie `03-strategy/…`, ist `$KIOS_VAULT/` davorzusetzen.
+- **Read vor Edit (Pflicht):** Die großen Vault-Dateien (`03-strategy/current-priorities.md`, `03-strategy/open-loops.md`, Vault-`CLAUDE.md`) **immer erst frisch `Read`en, bevor du editierst** — auch bei vermeintlichen Ein-Zeilen-Änderungen. Ein Edit ohne vorheriges Read bricht mit „File has not been read yet" ab.
+- **Wiki-Links überall:** Jede Referenz auf eine Vault-Datei, Person oder Projekt → `[[wikilink]]`
 - **Nie fragen "Soll ich speichern?"** — Einfach machen und berichten
-- **Deutsch:** Alle Ausgaben auf Deutsch, technische Begriffe duerfen Englisch bleiben
+- **Deutsch:** Alle Ausgaben auf Deutsch, technische Begriffe dürfen Englisch bleiben
 - **Kurz:** Wenn 1 Satz reicht, keinen Absatz schreiben
 - **Timestamps:** Nach jedem File-Update: `> Letzte Aktualisierung: YYYY-MM-DD`
 - **Dateinamen:** kebab-case, keine Emojis, keine Umlaute

@@ -7,11 +7,11 @@ Am besten Sonntag abend oder Montag morgen. Jeden Schritt einzeln mit dem Nutzer
 ## Schritt 1: Inbox leeren
 
 1. Lies `00-inbox/capture.md`
-2. Falls leer: "Inbox ist leer — weiter zum naechsten Schritt."
+2. Falls leer: "Inbox ist leer — weiter zum nächsten Schritt."
 3. Falls Items vorhanden: Jedes Item einzeln zeigen und fragen:
    - **Machen** → Als Task in `current-priorities.md` eintragen (P0/P1/P2)
    - **Planen** → Projekt-Idee in `04-projects/`, aktiver Loop in `open-loops.md` (Sektion „Wartend auf...")
-   - **Loeschen** → Entfernen
+   - **Löschen** → Entfernen
 4. Nach Verarbeitung: `capture.md` leeren (nur Header behalten)
 
 ---
@@ -34,7 +34,7 @@ Am besten Sonntag abend oder Montag morgen. Jeden Schritt einzeln mit dem Nutzer
 2. Status in den jeweiligen `README.md` Dateien aktualisieren
 3. Abgeschlossene Projekte:
    - Eintrag in `09-reference/completed-projects.md`
-   - Ordner kann spaeter nach `09-reference/` verschoben werden
+   - Ordner kann später nach `09-reference/` verschoben werden
 
 ---
 
@@ -52,24 +52,24 @@ Antworten werden im Weekly Log festgehalten.
 
 ## Schritt 5: Weekly Log schreiben
 
-In `09-reference/weekly-log.md` eine Zeile ergaenzen:
+In `09-reference/weekly-log.md` eine Zeile ergänzen:
 
 ```markdown
-| [KW] | [Datumsbereich] | [1-3 Saetze: Was passiert ist. Key Insight.] |
+| [KW] | [Datumsbereich] | [1-3 Sätze: Was passiert ist. Key Insight.] |
 ```
 
-**Regel:** Max 8 Eintraege. Wenn mehr: Aeltesten loeschen.
+**Regel:** Max 8 Einträge. Wenn mehr: Ältesten löschen.
 
 ---
 
-## Schritt 6: Naechste Woche planen
+## Schritt 6: Nächste Woche planen
 
-1. Frage: "Was sind deine Top 3 fuer naechste Woche?"
+1. Frage: "Was sind deine Top 3 für nächste Woche?"
 2. In `03-strategy/current-priorities.md` unter neuer KW eintragen:
    - Top 3 Business
-   - Top 1 Persoenlich
+   - Top 1 Persönlich
    - Optional: Side Quests
-3. Abschluss: "Review fertig. Guter Start in die Woche!"
+3. Abschluß: "Review fertig. Guter Start in die Woche!"
 
 ---
 
@@ -77,5 +77,5 @@ In `09-reference/weekly-log.md` eine Zeile ergaenzen:
 
 - Geduldig — nicht hetzen
 - Jeden Schritt einzeln durchgehen, nicht alles auf einmal
-- Wiki-Links in alle Eintraege
+- Wiki-Links in alle Einträge
 - Timestamps aktualisieren
