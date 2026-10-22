@@ -1,0 +1,16 @@
+# .leakcheckignore — Fehlalarme von leak_check.py dauerhaft stummschalten.
+#
+# Format je Zeile:   <regelname|*>  <regex auf den GEFUNDENEN WERT>
+#
+# ⚠️ Ein Eintrag hier gilt REPO-WEIT für diesen Wert — auch dort, wo er ein
+# echter Fund wäre. Belegt 24.08.2026: `github_token ^ghp_Z+$` legte prompt
+# drei eigene Tests still, die genau diesen Köder brauchen.
+# Deshalb: Einzelfälle mit `# leakcheck: allow <regel>` AM FUNDORT markieren.
+# Das reist mit der Datei, ist beim Lesen sichtbar und wirkt nur dort.
+# Diese Datei bleibt bewußt fast leer.
+#
+# Gefiltert wird der WERT, nie die DATEI — wer eine ganze Datei freistellt,
+# verliert sie als Wachposten.
+
+# Testwert aus dem MUST_HIT-Korpus, kommt in zwei Dateien vor.
+secret_assignment   ^hunter2xyz$
