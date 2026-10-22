@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "if": "Bash(git commit*)",
+            "statusMessage": "git diff + status vor dem Commit...",
+            "command": "INPUT=$(cat); CMD=$(printf '%s' \"$INPUT\" | jq -r '.tool_input.command // \"\"'); case \"$CMD\" in *\"git commit\"*) ;; *) exit 0 ;; esac; DIR=$(printf '%s' \"$CMD\" | sed -n 's/.*cd \\([^ &;]*\\).*/\\1/p' | head -1); WORKDIR=\"${DIR:-.}\"; DIFF=$(cd \"$WORKDIR\" 2>/dev/null && git diff --stat 2>/dev/null); STATUS=$(cd \"$WORKDIR\" 2>/dev/null && git status --short 2>/dev/null); jq -cn --arg d \"${DIFF:-<keine Aenderungen>}\" --arg s \"${STATUS:-<clean>}\" --arg w \"$WORKDIR\" '{systemMessage: (\"Pre-commit-Check in \" + $w + \":\\n=== git diff --stat ===\\n\" + $d + \"\\n=== git status --short ===\\n\" + $s)}'"
+          }
+        ]
+      }
+    ]
+  }
+}

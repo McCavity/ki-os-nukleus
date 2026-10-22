@@ -51,13 +51,36 @@ Kontext-Dateien und deine persönliche `CLAUDE.md` an.
 | `/review` | Wöchentliches Review |
 | `/shutdown` | Session beenden |
 
-## Testsuite
+## Vor dem Veröffentlichen: `leak_check.py`
 
-`scripts/resolve_vault.py` bringt eine eigene pytest-Suite mit
-(`scripts/test_resolve_vault.py`). Läuft ohne lokale Installation über `uv`:
+Ein KI-OS schreibt laufend Dateien, und ein Agent übernimmt dabei gern Pfade, Hostnamen
+oder Zugangsdaten aus dem Kontext. `scripts/leak_check.py` ist ein Vorfilter dagegen —
+vor jedem Commit oder Push eines Repos, das andere sehen können:
 
 ```bash
-uv run --no-project --with pytest -- python -m pytest scripts/test_resolve_vault.py -q
+python3 scripts/leak_check.py --staged                 # was der nächste Commit enthält
+python3 scripts/leak_check.py --diff origin/main..HEAD # was ein Push veröffentlichen würde
+python3 scripts/leak_check.py --selftest               # Kalibrierung beweisen
+```
+
+- **Funde werden maskiert.** Das Werkzeug holt den Fund nicht ins Sitzungsprotokoll; erst
+  `--show` gibt ihn frei, und das ist eine bewußte Entscheidung.
+- **Exit 0** heißt „nichts gefunden", **Exit 1** „Funde ansehen", **Exit 2** „nichts
+  geprüft" (leerer Diff, falscher Pfad) — Exit 2 ist **nie** ein sauberer Lauf.
+- Ein Treffer ist ein Prüfauftrag, kein Urteil. Fehlalarme am Fundort mit
+  `# leakcheck: allow <regel>` stummschalten, nur im Ausnahmefall über `.leakcheckignore`.
+- Kein Fund ist kein Freibrief: geprüft wird nur, was das Regelwerk kennt.
+
+Dazu zeigt ein Hook in `.claude/settings.json` vor jedem `git commit`, das Claude ausführt,
+`git diff --stat` und `git status` an. Er braucht [`jq`](https://jqlang.org) im PATH.
+
+## Testsuite
+
+`scripts/resolve_vault.py` und `scripts/leak_check.py` bringen je eine pytest-Suite mit
+(`scripts/test_*.py`). Läuft ohne lokale Installation über `uv`:
+
+```bash
+uv run --no-project --with pytest -- python -m pytest scripts/ -q
 ```
 
 ## Wie es weitergeht
